@@ -1,9 +1,8 @@
-package util_test
+package util
 
 import (
-	"testing"
 	"strings"
-	"github.com/wil-ckaew/gofinance-backend/util"
+	"testing"
 )
 
 /*
@@ -11,7 +10,7 @@ ROOST_METHOD_HASH=RandomEmail_1905439733
 ROOST_METHOD_SIG_HASH=RandomEmail_7a04f189fd
 
 
- */
+*/
 func TestRandomEmail(t *testing.T) {
 
 	testCases := []struct {
@@ -47,7 +46,7 @@ ROOST_METHOD_HASH=RandomString_d7e3599ac4
 ROOST_METHOD_SIG_HASH=RandomString_c6fe4ad19a
 
 
- */
+*/
 func TestRandomString(t *testing.T) {
 
 	tests := []struct {
@@ -64,14 +63,14 @@ func TestRandomString(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 
-			res := util.RandomString(tt.length)
+			res := RandomString(tt.length)
 
 			if len(res) != tt.expected {
 				t.Errorf("Expected string of length %d but got %d", tt.expected, len(res))
 			}
 
 			for _, char := range res {
-				if !strings.ContainsRune(util.Alphabet, rune(char)) {
+				if !strings.ContainsRune(alphabet, rune(char)) {
 					t.Errorf("Random string contains an invalid character: %v", string(char))
 				}
 			}
@@ -79,4 +78,3 @@ func TestRandomString(t *testing.T) {
 		})
 	}
 }
-
