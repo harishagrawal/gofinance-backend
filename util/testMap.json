@@ -1,0 +1,12 @@
+{
+  "/var/tmp/Roost/RoostGPT/go-calculator/1733111040/source/gofinance-backend/util/random_test.go": {
+    "/var/tmp/Roost/RoostGPT/go-calculator/1733111040/source/gofinance-backend/util/randomemail_test.go": {
+      "testMethodHash": "92827e8113",
+      "roostMethodHash": "ROOST_METHOD_HASH=RandomEmail_1905439733\nROOST_METHOD_SIG_HASH=RandomEmail_7a04f189fd\n\n"
+    },
+    "/var/tmp/Roost/RoostGPT/go-calculator/1733111040/source/gofinance-backend/util/randomstring_test.go": {
+      "testMethodHash": "009c8cccca",
+      "roostMethodHash": "ROOST_METHOD_HASH=RandomString_d7e3599ac4\nROOST_METHOD_SIG_HASH=RandomString_c6fe4ad19a\n\n"
+    }
+  }
+}
