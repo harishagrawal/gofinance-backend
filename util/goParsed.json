@@ -1,0 +1,289 @@
+{
+  "/var/tmp/Roost/RoostGPT/go-calculator/1733126899/source/gofinance-backend/util/auth.go": {
+    "function_dict": {
+      "GetTokenInHeaderAndVerify": {
+        "code": "func GetTokenInHeaderAndVerify(ctx *gin.Context) error {\n\tauthorizationHeaderKey := ctx.GetHeader(\"authorization\")\n\tfields := strings.Fields(authorizationHeaderKey)\n\ttokenToValidate := fields[1]\n\terrOnValiteToken := ValidateToken(ctx, tokenToValidate)\n\tif errOnValiteToken != nil {\n\t\treturn errOnValiteToken\n\t}\n\treturn nil\n}",
+        "is_file_function": true,
+        "associated_struct": [
+          "gin.Context",
+          "error",
+          "responseWriter",
+          "http.Request",
+          "ResponseWriter",
+          "Params",
+          "HandlersChain",
+          "int8",
+          "string",
+          "Engine",
+          "Params",
+          "skippedNode",
+          "sync.RWMutex",
+          "map[string]any",
+          "errorMsgs",
+          "string",
+          "url.Values",
+          "url.Values",
+          "http.SameSite"
+        ],
+        "associated_func": [
+          "ValidateToken"
+        ],
+        "dependent_files": [
+          "/Users/harishagrawal/go/pkg/mod/github.com/gin-gonic/gin@v1.8.2/context.go",
+          "/private/var/tmp/Roost/RoostGPT/go-calculator/1733126899/source/gofinance-backend/util/auth.go"
+        ],
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": true,
+        "access_modifier": "public"
+      },
+      "ValidateToken": {
+        "code": "func ValidateToken(ctx *gin.Context, token string) error {\n\tclaims := &Claims{}\n\tvar jwtSignedKey = []byte(\"secret_key\")\n\ttokenParse, err := jwt.ParseWithClaims(token, claims, func(t *jwt.Token) (interface{}, error) {\n\t\treturn jwtSignedKey, nil\n\t})\n\tif err != nil {\n\t\tif err == jwt.ErrSignatureInvalid {\n\t\t\tctx.JSON(http.StatusUnauthorized, err)\n\t\t\treturn err\n\t\t}\n\t\tctx.JSON(http.StatusBadRequest, err)\n\t\treturn err\n\t}\n\tif !tokenParse.Valid {\n\t\tctx.JSON(http.StatusUnauthorized, \"Token is invalid\")\n\t\treturn nil\n\t}\n\tctx.Next()\n\treturn nil\n}",
+        "is_file_function": true,
+        "associated_struct": [
+          "gin.Context",
+          "string",
+          "error",
+          "responseWriter",
+          "http.Request",
+          "ResponseWriter",
+          "Params",
+          "HandlersChain",
+          "int8",
+          "string",
+          "Engine",
+          "Params",
+          "skippedNode",
+          "sync.RWMutex",
+          "map[string]any",
+          "errorMsgs",
+          "string",
+          "url.Values",
+          "url.Values",
+          "http.SameSite"
+        ],
+        "associated_func": null,
+        "dependent_files": [
+          "/Users/harishagrawal/go/pkg/mod/github.com/gin-gonic/gin@v1.8.2/context.go"
+        ],
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": true,
+        "access_modifier": "public"
+      },
+      "ctx.GetHeader": {
+        "code": "",
+        "is_file_function": false,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": ""
+      },
+      "ctx.JSON": {
+        "code": "",
+        "is_file_function": false,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": ""
+      },
+      "ctx.Next": {
+        "code": "",
+        "is_file_function": false,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": ""
+      },
+      "jwt.ParseWithClaims": {
+        "code": "",
+        "is_file_function": false,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": ""
+      },
+      "strings.Fields": {
+        "code": "",
+        "is_file_function": false,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": ""
+      }
+    },
+    "struct_dict": {
+      "Claims": "type Claims struct {\n\tUsername\tstring\t`json:\"username\"`\n\tjwt.RegisteredClaims\n}",
+      "Engine": "",
+      "HandlersChain": "",
+      "Params": "",
+      "ResponseWriter": "",
+      "error": "",
+      "errorMsgs": "",
+      "gin.Context": "type Context struct {\n\twritermem\tresponseWriter\n\tRequest\t\t*http.Request\n\tWriter\t\tResponseWriter\n\tParams\t\tParams\n\thandlers\tHandlersChain\n\tindex\t\tint8\n\tfullPath\tstring\n\tengine\t\t*Engine\n\tparams\t\t*Params\n\tskippedNodes\t*[]skippedNode\n\tmu\t\tsync.RWMutex\n\tKeys\t\tmap[string]any\n\tErrors\t\terrorMsgs\n\tAccepted\t[]string\n\tqueryCache\turl.Values\n\tformCache\turl.Values\n\tsameSite\thttp.SameSite\n}",
+      "http.Request": "",
+      "http.SameSite": "",
+      "int8": "",
+      "map[string]any": "",
+      "responseWriter": "",
+      "skippedNode": "",
+      "string": "",
+      "sync.RWMutex": "",
+      "url.Values": ""
+    },
+    "package_dict": {
+      "gin": "github.com/gin-gonic/gin",
+      "v4": "github.com/golang-jwt/jwt/v4"
+    },
+    "package_name": "util",
+    "imports": "import (\n\t\"net/http\"\n\t\"strings\"\n\t\"github.com/gin-gonic/gin\"\n\t\"github.com/golang-jwt/jwt/v4\"\n)\n"
+  },
+  "/var/tmp/Roost/RoostGPT/go-calculator/1733126899/source/gofinance-backend/util/random.go": {
+    "function_dict": {
+      "RandomEmail": {
+        "code": "func RandomEmail(number int) string {\n\treturn fmt.Sprintf(\"%s@email.com\", RandomString(number))\n}",
+        "is_file_function": true,
+        "associated_struct": [
+          "int",
+          "string"
+        ],
+        "associated_func": [
+          "RandomString"
+        ],
+        "dependent_files": [
+          "/private/var/tmp/Roost/RoostGPT/go-calculator/1733126899/source/gofinance-backend/util/random.go"
+        ],
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": true,
+        "access_modifier": "public"
+      },
+      "RandomString": {
+        "code": "func RandomString(number int) string {\n\tvar sb strings.Builder\n\tk := len(alphabet)\n\tfor i := 0; i < number; i++ {\n\t\tc := alphabet[rand.Intn(k)]\n\t\tsb.WriteByte(c)\n\t}\n\treturn sb.String()\n}",
+        "is_file_function": true,
+        "associated_struct": [
+          "int",
+          "string"
+        ],
+        "associated_func": [
+          "len"
+        ],
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": true,
+        "access_modifier": "public"
+      },
+      "fmt.Sprintf": {
+        "code": "",
+        "is_file_function": false,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": ""
+      },
+      "init": {
+        "code": "func init() {\n\trand.Seed(time.Now().UnixNano())\n}",
+        "is_file_function": true,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": "private"
+      },
+      "len": {
+        "code": "",
+        "is_file_function": false,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": ""
+      },
+      "rand.Intn": {
+        "code": "",
+        "is_file_function": false,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": ""
+      },
+      "rand.Seed": {
+        "code": "",
+        "is_file_function": false,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": ""
+      },
+      "sb.String": {
+        "code": "",
+        "is_file_function": false,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": ""
+      },
+      "sb.WriteByte": {
+        "code": "",
+        "is_file_function": false,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": ""
+      },
+      "time.Now": {
+        "code": "",
+        "is_file_function": false,
+        "associated_struct": null,
+        "associated_func": null,
+        "dependent_files": null,
+        "test_exists": false,
+        "test_functions": {},
+        "requires_test": false,
+        "access_modifier": ""
+      }
+    },
+    "struct_dict": {
+      "int": "",
+      "string": ""
+    },
+    "package_dict": {},
+    "package_name": "util",
+    "imports": "import (\n\t\"fmt\"\n\t\"math/rand\"\n\t\"strings\"\n\t\"time\"\n)\n"
+  }
+}
