@@ -1,14 +1,15 @@
 package util
 
 import (
-	"net/http"
-	"net/http/httptest"
-	"testing"
-	"github.com/gin-gonic/gin"
-	"github.com/golang-jwt/jwt/v4"
 	"errors"
 	"fmt"
+	"net/http"
+	"net/http/httptest"
 	"strings"
+	"testing"
+
+	"github.com/gin-gonic/gin"
+	"github.com/golang-jwt/jwt/v4"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -17,7 +18,7 @@ ROOST_METHOD_HASH=ValidateToken_7440899dfa
 ROOST_METHOD_SIG_HASH=ValidateToken_ff3cc8ee02
 
 
- */
+*/
 func TestValidateToken(t *testing.T) {
 	tests := []struct {
 		name      string
@@ -69,6 +70,7 @@ func TestValidateToken(t *testing.T) {
 	}
 }
 
+/*
 func ValidateToken(ctx *gin.Context, token string) error {
 	claims := &Claims{}
 
@@ -94,12 +96,14 @@ func ValidateToken(ctx *gin.Context, token string) error {
 	ctx.Next()
 	return nil
 }
+*/
 
 func createTestToken() string {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, &Claims{
 		Username: "testUser",
 	})
 
+	var jwtSignedKey = []byte("secret_key")
 	ss, _ := token.SignedString(jwtSignedKey)
 	return ss
 }
@@ -109,7 +113,7 @@ ROOST_METHOD_HASH=GetTokenInHeaderAndVerify_c6fc249681
 ROOST_METHOD_SIG_HASH=GetTokenInHeaderAndVerify_4459fbc010
 
 
- */
+*/
 func GetTokenInHeaderAndVerifyUsingMock(ctx *gin.Context, validateTokenFunc func(ctx *gin.Context, token string) error) error {
 	authorizationHeaderKey := ctx.GetHeader("authorization")
 	fields := strings.Fields(authorizationHeaderKey)
@@ -189,4 +193,3 @@ func TestGetTokenInHeaderAndVerify(t *testing.T) {
 		}
 	}
 }
-
