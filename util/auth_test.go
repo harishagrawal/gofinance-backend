@@ -4,22 +4,24 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/stretchr/testify/assert"
 )
 
 var jwtSignedKey = []byte("jwt_token")
+
+/*
 type Claims struct {
 	Username string `json:"username"`
 	jwt.RegisteredClaims
 }
-/*
 ROOST_METHOD_HASH=GetTokenInHeaderAndVerify_c6fc249681
 ROOST_METHOD_SIG_HASH=GetTokenInHeaderAndVerify_4459fbc010
 
 
- */
+*/
 func TestGetTokenInHeaderAndVerify(t *testing.T) {
 
 	testCases := []struct {
@@ -78,4 +80,3 @@ func createTokenWithUsername(username string) string {
 	tokenString, _ := token.SignedString(jwtSignedKey)
 	return tokenString
 }
-
